@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% if page.title %}{{ page.title }} - {% endif %} {% if site.subsite_name %}{{ site.subsite_name }} - {% endif %}City of Santa Monica</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% for script in site.webfont_js %}
+        <script type="text/javascript" src="{{ script }}"></script>
+        {% endfor %}
+                
+        <link href="{{ site.root }}/common/css/common.css" rel="stylesheet"/>
+        
+        {% for css in site.local_css %}
+        <link href="{{ css }}" rel="stylesheet"></script>
+        {% endfor %}
+    
+        {% for css in page.custom_css %}
+        <link href="{{ css }}" rel="stylesheet"></script>
+        {% endfor %}
+        
+        <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.root }}/common/images/favicon.ico{% endif %}">
+        
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" charset="utf-8"></script>
+        
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>    
+    <body>
+        <div id="wrapper" class="wrapper">
+            
+            <header id="site-header">
+                <a id="top"></a>
+                <div id="home-nav">
+                    <a id="city-home" href="http://www.smgov.net"><img src="{{ site.root }}/common/images/city-logo.png" alt="City of Santa Monica" /></a>
+                    <a href="http://www.smgov.net">City of Santa Monica</a>
+                </div>
+                <div id="site-search">
+                    <form action="{{ site.root }}/search.html" method="GET" role="search">
+                        <input name="q" type="text" placeholder="Search">
+                    </form>
+                </div>
+            </header>
+            
+            <div id="nav-container">
+                <nav class="primary">
+                    <ul>
+                        <li class="menu"><a href="#"></a></li>
+                        <li class="home nav"><a href="{% if site.root %}{{ site.root }}{% else %}/{% endif %}"></a></li>
+                        {% include primary-nav.html %}
+                    </ul>
+                </nav>
+            </div>
+            
+            <div id="content-container">
+                {{ content }}
+            </div>
+            
+            <footer id="site-footer">
+                
+                <div class="left float">
+                    <nav class="footer">
+                    {% include footer-nav.html %}
+                    </nav>
+                    <div>
+                        <p>City of Santa Monica &copy; {{ site.year }}</p>
+                        {% include footer-attribution.html %}
+                        <p>Website produced by the City of Santa Monica Web Development Division</p>
+                    </div>
+                </div>
+                
+                <div class="right float">
+                    {% include footer-right.html %}
+                </div>
+                
+            </footer>
+            
+        </div>
+        
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{ site.ga_tracking_code }}']);
+            _gaq.push(['_trackPageview']);
+            
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        
+        {% for script in site.local_js %}
+        <script type="text/javascript" src="{{ script }}"></script>
+        {% endfor %}
+
+        {% for script in page.custom_js %}
+        <script type="text/javascript" src="{{ script }}"></script>
+        {% endfor %}
+    </body>
+</html>
