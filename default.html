@@ -29,8 +29,7 @@
         <![endif]-->
     </head>    
     <body>
-        <div id="wrapper" class="wrapper">
-            
+        <div id="wrapper" class="wrapper">            
             <header id="site-header">
                 <a id="top"></a>
                 <div id="home-nav">
@@ -49,7 +48,9 @@
                     <ul>
                         <li class="menu"><a href="#"></a></li>
                         <li class="home nav"><a href="{% if site.root %}{{ site.root }}{% else %}/{% endif %}"></a></li>
-                        {% include primary-nav.html %}
+                        {% if site.primary-nav %}
+                        {% include {{ site.primary-nav }} %}
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
@@ -58,25 +59,27 @@
                 {{ content }}
             </div>
             
-            <footer id="site-footer">
-                
+            <footer id="site-footer">                
                 <div class="left float">
+                    {% if site.footer-nav %}
                     <nav class="footer">
-                    {% include footer-nav.html %}
+                    {% include {{ site.footer-nav }} %}
                     </nav>
+                    {% endif %}
                     <div>
                         <p>City of Santa Monica &copy; {{ site.year }}</p>
-                        {% include footer-attribution.html %}
+                        {% if site.footer-attribution %}
+                        {% include {{ site.footer-attribution }} %}
+                        {% endif %}
                         <p>Website produced by the City of Santa Monica Web Development Division</p>
                     </div>
                 </div>
-                
+                {% if site.footer-right %}
                 <div class="right float">
-                    {% include footer-right.html %}
+                    {% include {{ site.footer-right }} %}
                 </div>
-                
-            </footer>
-            
+                {% endif %}                
+            </footer>            
         </div>
         
         <script type="text/javascript">
