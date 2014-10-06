@@ -9,7 +9,7 @@
         <script type="text/javascript" src="{{ script }}"></script>
         {% endfor %}
                 
-        <link href="{{ site.root }}/common/css/common.css" rel="stylesheet"/>
+        <link href="{{ site.baseurl }}/common/css/common.css" rel="stylesheet"/>
         
         {% for css in site.local_css %}
         <link href="{{ css }}" rel="stylesheet"></script>
@@ -19,7 +19,7 @@
         <link href="{{ css }}" rel="stylesheet"></script>
         {% endfor %}
         
-        <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.root }}/common/img/favicon.ico{% endif %}">
+        <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.baseurl }}/common/img/favicon.ico{% endif %}">
         
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" charset="utf-8"></script>
         
@@ -33,11 +33,11 @@
             <header id="site-header">
                 <a id="top"></a>
                 <div id="home-nav">
-                    <a id="city-home" href="http://www.smgov.net"><img src="{{ site.root }}/common/img/city-logo-dark.png" alt="City of Santa Monica" /></a>
+                    <a id="city-home" href="http://www.smgov.net"><img src="{{ site.baseurl }}/common/img/city-logo-dark.png" alt="City of Santa Monica" /></a>
                     <a href="http://www.smgov.net">City of Santa Monica</a>
                 </div>
                 <div id="site-search">
-                    <form action="{{ site.root }}/search.html" method="GET" role="search">
+                    <form action="{{ site.baseurl }}/search.html" method="GET" role="search">
                         <input name="q" type="text" placeholder="Search">
                     </form>
                 </div>
@@ -47,7 +47,7 @@
                 <nav class="primary">
                     <ul>
                         <li class="menu"><a href="#"></a></li>
-                        <li class="home nav"><a href="{% if site.root %}{{ site.root }}{% else %}/{% endif %}"></a></li>
+                        <li class="home nav"><a href="{% if site.baseurl %}{{ site.baseurl }}{% else %}/{% endif %}"></a></li>
                         {% if site.primary-nav %}
                         {% include {{ site.primary-nav }} %}
                         {% endif %}
