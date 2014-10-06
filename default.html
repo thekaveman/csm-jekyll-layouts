@@ -82,6 +82,7 @@
             </footer>            
         </div>
         
+        {% if site.ga_tracking_code %}
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', '{{ site.ga_tracking_code }}']);
@@ -93,6 +94,7 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
         </script>
+        {% endif %}
         
         {% for script in site.local_js %}
         <script type="text/javascript" src="{{ script }}"></script>
