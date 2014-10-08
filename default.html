@@ -8,17 +8,17 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         
         {% for script in site.webfontjs %}
-        <script type="text/javascript" src="{{ script }}"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}{{ script }}"></script>
         {% endfor %}
                 
         <link href="{{ site.baseurl }}/common/css/base.css" rel="stylesheet"/>
         
         {% for css in site.localcss %}
-        <link href="{{ css }}" rel="stylesheet"></script>
+        <link href="{{ site.baseurl }}{{ css }}" rel="stylesheet"></script>
         {% endfor %}
     
         {% for css in page.customcss %}
-        <link href="{{ css }}" rel="stylesheet"></script>
+        <link href="{{ site.baseurl }}{{ css }}" rel="stylesheet"></script>
         {% endfor %}
         
         <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.baseurl }}/common/img/favicon.ico{% endif %}">
@@ -39,7 +39,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/{{ site.baseurl }}">{{ site.name }}</a>
+                        <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.name }}</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -94,11 +94,11 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         
         {% for script in site.localjs %}
-        <script type="text/javascript" src="{{ script }}"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}{{ script }}"></script>
         {% endfor %}
 
         {% for script in page.customjs %}
-        <script type="text/javascript" src="{{ script }}"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}{{ script }}"></script>
         {% endfor %}
     </body>
 </html>
