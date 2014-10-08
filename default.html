@@ -2,87 +2,80 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% if page.title %}{{ page.title }} - {% endif %} {% if site.subsite_name %}{{ site.subsite_name }} - {% endif %}City of Santa Monica</title>
+        <title>{% if page.title %}{{ page.title }} - {% endif %}{% if site.name %}{{ site.name }} - {% endif %}City of Santa Monica</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        {% for script in site.webfont_js %}
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        
+        {% for script in site.webfontjs %}
         <script type="text/javascript" src="{{ script }}"></script>
         {% endfor %}
                 
         <link href="{{ site.baseurl }}/common/css/base.css" rel="stylesheet"/>
         
-        {% for css in site.local_css %}
+        {% for css in site.localcss %}
         <link href="{{ css }}" rel="stylesheet"></script>
         {% endfor %}
     
-        {% for css in page.custom_css %}
+        {% for css in page.customcss %}
         <link href="{{ css }}" rel="stylesheet"></script>
         {% endfor %}
         
         <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.baseurl }}/common/img/favicon.ico{% endif %}">
-        
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" charset="utf-8"></script>
-        
+                
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>    
     <body>
-        <div id="wrapper" class="wrapper">            
-            <header id="site-header">
-                <a id="top"></a>
-                <div id="home-nav">
-                    <a id="city-home" href="http://www.smgov.net"><img src="{{ site.baseurl }}/common/img/city-logo-dark.png" alt="City of Santa Monica" /></a>
-                    <a href="http://www.smgov.net">City of Santa Monica</a>
+        <div class="container">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/{{ site.baseurl }}">{{ site.name }}</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                        {% include primary-nav.html %}    
+                        </ul>
+                        <form class="navbar-form navbar-right" action="{{ site.baseurl }}/search.html" method="GET" role="search">
+                            <input class="form-control" name="q" type="text" placeholder="Search this site">
+                            <button class="btn btn-default" type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div id="site-search">
-                    <form action="{{ site.baseurl }}/search.html" method="GET" role="search">
-                        <input name="q" type="text" placeholder="Search">
-                    </form>
-                </div>
-            </header>
-            
-            <div id="nav-container">
-                <nav class="primary">
-                    <ul>
-                        <li class="menu"><a href="#"></a></li>
-                        <li class="home nav"><a href="{% if site.baseurl %}{{ site.baseurl }}{% else %}/{% endif %}"></a></li>
-                        {% if site.primary-nav %}
-                        {% include {{ site.primary-nav }} %}
-                        {% endif %}
-                    </ul>
-                </nav>
             </div>
             
-            <div id="content-container">
+            <div class="site-content">
                 {{ content }}
             </div>
             
-            <footer id="site-footer">                
-                <div class="left float">
-                    {% if site.footer-nav %}
+            <footer class="site-footer">
+                <div>
+                    {% if site.footernav %}
                     <nav class="footer">
-                    {% include {{ site.footer-nav }} %}
+                    {% include {{ site.footernav }} %}
                     </nav>
                     {% endif %}
                     <div>
-                        <p>City of Santa Monica &copy; {{ site.year }}</p>
-                        {% if site.footer-attribution %}
-                        {% include {{ site.footer-attribution }} %}
+                        <p>City of Santa Monica &copy; {{ site.time | date: "%Y" }}</p>
+                        {% if site.attribution %}
+                        {% include {{ site.attribution }} %}
                         {% endif %}
                         <p>Website produced by the City of Santa Monica Web Development Division</p>
                     </div>
                 </div>
-                {% if site.footer-right %}
-                <div class="right float">
-                    {% include {{ site.footer-right }} %}
-                </div>
-                {% endif %}                
             </footer>            
         </div>
         
-        {% if site.ga_tracking_code %}
+        {% if site.gacode %}
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', '{{ site.ga_tracking_code }}']);
@@ -96,11 +89,15 @@
         </script>
         {% endif %}
         
-        {% for script in site.local_js %}
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" charset="utf-8"></script>
+        
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        {% for script in site.localjs %}
         <script type="text/javascript" src="{{ script }}"></script>
         {% endfor %}
 
-        {% for script in page.custom_js %}
+        {% for script in page.customjs %}
         <script type="text/javascript" src="{{ script }}"></script>
         {% endfor %}
     </body>
